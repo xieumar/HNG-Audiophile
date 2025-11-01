@@ -4,6 +4,7 @@ import { api } from "../convex/_generated/api";
 import Hero from "@/components/Home/Hero";
 import Products from "@/components/Home/Products";
 import About from "@/components/Home/About";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <Products />
       <About />
+      <Footer />
     </div>
   );
 }

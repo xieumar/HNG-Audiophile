@@ -9,10 +9,10 @@ interface ProductCardProps {
 
 function ProductCard({ imageSrc, title, link }: ProductCardProps) {
   return (
-    <div className="card relative w-[350px] h-[205px] bg-(--white-dark) rounded-lg">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-1/3 h-10 bg-black/30 blur-lg rounded-full"></div>
+    <div className="card relative lg:w-[350px] w-[215px] lg:h-[205px] h-[165px] bg-(--white-dark) rounded-lg">
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-1/3 lg:h-10 h-8 bg-black/30 blur-lg rounded-full"></div>
       <Image src={imageSrc}
-        className=' absolute -top-1/3 left-1/3 z-10 '
+        className=' absolute -top-1/3 xl:left-1/3 left-1/4 translate-x-1/10 z-10 w-[90px] lg:w-[105px]'
         alt={title} width={120} height={207} />
       <div className="text absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/3 text-center">
         <p className='uppercase font-semibold tracking-wide'>{title}</p>
