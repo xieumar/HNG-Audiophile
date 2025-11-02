@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
-function Navbar() {
+function Navbar({ isProductPage }: { isProductPage?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -45,11 +45,11 @@ function Navbar() {
 
         {/* Mobile Navigation Links */}
         {isMenuOpen && (
-          <ul ref={menuRef} className="lg:hidden flex flex-col absolute top-full left-0 w-full bg-transparent backdrop-blur-lg p-4 items-center gap-4 border-t border-white/20">
-            <li className="uppercase tracking-widest text-sm"><a href="/" className="hover:text-(--orange-dark)">Home</a></li>
-            <li className="uppercase tracking-widest text-sm"><a href="/headphones" className="hover:text-(--orange-dark)">Headphones</a></li>
-            <li className="uppercase tracking-widest text-sm"><a href="#" className="hover:text-(--orange-dark)">Speakers</a></li>
-            <li className="uppercase tracking-widest text-sm"><a href="#" className="hover:text-(--orange-dark)">Earphones</a></li>
+          <ul ref={menuRef} className={`lg:hidden flex flex-col absolute top-full left-0 w-full p-4 items-center gap-4 border-t border-white/20 ${isProductPage ? 'bg-black' : 'bg-transparent backdrop-blur-lg'}`}>
+            <li className="uppercase tracking-widest text-sm w-full text-center"><a href="/" className="hover:text-(--orange-dark)">Home</a></li>
+            <li className="uppercase tracking-widest text-sm w-full text-center"><a href="/headphones" className="hover:text-(--orange-dark)">Headphones</a></li>
+            <li className="uppercase tracking-widest text-sm w-full text-center"><a href="#" className="hover:text-(--orange-dark)">Speakers</a></li>
+            <li className="uppercase tracking-widest text-sm w-full text-center"><a href="#" className="hover:text-(--orange-dark)">Earphones</a></li>
           </ul>
         )}
 

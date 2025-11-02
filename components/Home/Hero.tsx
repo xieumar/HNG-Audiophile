@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../Navbar';
+import Link from 'next/link';
 
 function Hero() {
   return (
@@ -24,7 +25,9 @@ function Hero() {
             <h4 className='text-sm uppercase tracking-[10px] text-(--white-light)/50'>New product</h4>
             <h1 className='text-4xl xs:text-5xl md:text-6xl font-semibold uppercase'>xx99 mark ii headphones</h1>
             <p className='text-base mx-auto md:mx-auto lg:mx-0 lg:w-2/3 tracking-wide text-(--white-light)/80'>Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</p>
-            <p className='p-2 px-4 mx-auto md:mx-auto lg:mx-0 uppercase bg-(--orange-dark) hover:bg-(--orange-light) cursor-pointer w-fit text-base'>See product</p>
+            <Link href="/headphones/xx99-mark-two-headphones">
+              <p className='p-2 px-4 mx-auto md:mx-auto lg:mx-0 uppercase bg-(--orange-dark) hover:bg-(--orange-light) cursor-pointer w-fit text-base'>See product</p>
+            </Link>
           </div>
         </div>
       </div>

@@ -46,6 +46,7 @@ export default defineSchema({
     others: v.array(v.object({
       slug: v.string(),
       name: v.string(),
+      category: v.string(),
       image: v.object({
         mobile: v.string(),
         tablet: v.string(),

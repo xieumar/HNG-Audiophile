@@ -1,9 +1,11 @@
 import ProductDetailClient from './ProductDetailClient';
 import { notFound } from 'next/navigation';
 
-export default function SpeakerDetailPage({ params }: { params: { slug: string } }) {
-  if (!params.slug) {
+export default async function SpeakerDetailPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
+  const slug = params.slug;
+  if (!slug) {
     notFound();
   }
-  return <ProductDetailClient slug={params.slug} />;
+  return <ProductDetailClient slug={slug} />;
 }
