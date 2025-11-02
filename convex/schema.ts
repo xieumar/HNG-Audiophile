@@ -46,7 +46,7 @@ export default defineSchema({
     others: v.array(v.object({
       slug: v.string(),
       name: v.string(),
-      category: v.string(),
+      category: v.optional(v.string()),
       image: v.object({
         mobile: v.string(),
         tablet: v.string(),
@@ -68,10 +68,6 @@ export default defineSchema({
       country: v.string(),
     }),
     paymentMethod: v.string(), // e.g., 'e-Money', 'Cash on Delivery'
-    eMoneyDetails: v.optional(v.object({ // Optional for e-Money payments
-      eMoneyNumber: v.string(),
-      eMoneyPin: v.string(),
-    })),
     items: v.array(v.object({
       id: v.number(),
       name: v.string(),

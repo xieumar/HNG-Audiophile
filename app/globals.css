@@ -22,3 +22,29 @@
 .modal-link:hover{
   color: #D87D4A !important;
 }
+
+.form{
+  padding: 30px 40px !important;
+}
+
+.form input{
+  padding: 8px;
+}
+
+
+.form input:focus-within{
+  outline: 2px solid #D87D4A;
+  border-color: transparent !important;
+}
+
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+          border-color: #D87D4A; /* Change border color of the checked radio */
+          background-color: #D87D4A; /* Change background color of the checked dot */
+      }
+      
+      .ant-input:focus,
+      .ant-input-focused {
+        border-color: #D87D4A !important;
+        box-shadow: 0 0 0 2px rgba(216, 125, 74, 0.2) !important;
+      }
