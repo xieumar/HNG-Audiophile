@@ -39,8 +39,8 @@ function Navbar() {
         <ul className="hidden lg:flex flex-1 justify-center space-x-8 uppercase tracking-widest text-sm">
           <li><a href="/" className="hover:text-(--orange-dark)">Home</a></li>
           <li><a href="/headphones" className="hover:text-(--orange-dark)">Headphones</a></li>
-          <li><a href="#" className="hover:text-(--orange-dark)">Speakers</a></li>
-          <li><a href="#" className="hover:text-(--orange-dark)">Earphones</a></li>
+          <li><a href="/speakers" className="hover:text-(--orange-dark)">Speakers</a></li>
+          <li><a href="/earphones" className="hover:text-(--orange-dark)">Earphones</a></li>
         </ul>
 
         {/* Mobile Navigation Links */}

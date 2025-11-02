@@ -9,7 +9,7 @@ import ProductCards from "@/components/ProductCards";
 
 
 export default function Home() {
-  const tasks = useQuery(api.tasks.get);
+
   return (
     <div className="w-full overflow-x-hidden">
       <Hero />

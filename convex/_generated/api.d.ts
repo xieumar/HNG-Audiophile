@@ -8,7 +8,8 @@
  * @module
  */
 
-import type * as tasks from "../tasks.js";
+import type * as products from "../products.js";
+import type * as seed from "../seed.js";
 
 import type {
   ApiFromModules,
@@ -25,7 +26,8 @@ import type {
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  tasks: typeof tasks;
+  products: typeof products;
+  seed: typeof seed;
 }>;
 declare const fullApiWithMounts: typeof fullApi;
 
