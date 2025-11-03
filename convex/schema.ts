@@ -73,6 +73,7 @@ export default defineSchema({
       name: v.string(),
       price: v.number(),
       quantity: v.number(),
+      image: v.string(),
     })),
     totals: v.object({
       subtotal: v.number(),

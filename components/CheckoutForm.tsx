@@ -66,6 +66,7 @@ const CheckoutForm = forwardRef<CheckoutFormRef, CheckoutFormProps>((props, ref)
       name: item.name,
       price: item.price,
       quantity: item.quantity,
+      image: item.image,
     }));
 
     const shippingCost = 50;
@@ -96,7 +97,7 @@ const CheckoutForm = forwardRef<CheckoutFormRef, CheckoutFormProps>((props, ref)
           grandTotal,
         },
       });
-
+      localStorage.setItem("lastOrderItems", JSON.stringify(orderItems));
       console.log("Order created successfully. orderId:", orderId);
 
       // ✅ Send email via Next.js route
