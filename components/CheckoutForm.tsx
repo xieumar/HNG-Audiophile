@@ -18,6 +18,8 @@ interface FormData {
   city: string;
   country: string;
   paymentMethod: string;
+  eMoneyNumber?: string;
+  eMoneyPin?: string;
 }
 
 // Define Yup schema for validation
@@ -30,6 +32,14 @@ const schema: yup.ObjectSchema<FormData> = yup.object({
   city: yup.string().required('City is required'),
   country: yup.string().required('Country is required'),
   paymentMethod: yup.string().required('Payment Method is required'),
+  eMoneyNumber: yup.string().when('paymentMethod', {
+    is: 'E-Money',
+    then: (schema) => schema.required('e-Money Number is required'),
+  }),
+  eMoneyPin: yup.string().when('paymentMethod', {
+    is: 'E-Money',
+    then: (schema) => schema.required('e-Money PIN is required'),
+  }),
 });
 
 export interface CheckoutFormRef {
@@ -260,6 +270,42 @@ const CheckoutForm = forwardRef<CheckoutFormRef, CheckoutFormProps>((props, ref)
             )}
           />
         </AntForm.Item>
+
+        {paymentMethod === 'E-Money' && (
+          <>
+            <AntForm.Item
+              label="e-Money Number"
+              validateStatus={errors.eMoneyNumber ? 'error' : ''}
+              help={errors.eMoneyNumber?.message}
+            >
+              <Controller
+                name="eMoneyNumber"
+                control={control}
+                render={({ field }) => <Input {...field} placeholder="238521993" />}
+              />
+            </AntForm.Item>
+            <AntForm.Item
+              label="e-Money PIN"
+              validateStatus={errors.eMoneyPin ? 'error' : ''}
+              help={errors.eMoneyPin?.message}
+            >
+              <Controller
+                name="eMoneyPin"
+                control={control}
+                render={({ field }) => <Input {...field} placeholder="6891" />}
+              />
+            </AntForm.Item>
+          </>
+        )}
+
+        {paymentMethod === 'Cash on Delivery' && (
+          <div className="flex items-center gap-6 mt-6 md:col-span-2">
+            <Image src="/assets/checkout/icon-cash-on-delivery.svg" alt="Cash on Delivery" width={48} height={48} />
+            <p className="text-gray-500 text-sm">
+              The ‘Cash on Delivery’ option enables you to pay in cash when our delivery courier arrives at your residence. Just make sure your address is correct and your recipient is available to receive your order.
+            </p>
+          </div>
+        )}
       </div>
     </AntForm>
   );
