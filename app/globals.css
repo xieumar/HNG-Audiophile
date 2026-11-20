@@ -8,6 +8,30 @@
   --black-light: #101010;
 }
 
+/* Custom scrollbar */
+html {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--orange-dark) var(--black-light);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange-light);
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
