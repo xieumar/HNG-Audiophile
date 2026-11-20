@@ -9,6 +9,14 @@ function Navbar({ isProductPage }: { isProductPage?: boolean }) {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
   const totalItems = useCartStore((state) => state.totalItems);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,7 +35,15 @@ function Navbar({ isProductPage }: { isProductPage?: boolean }) {
     };
   }, [menuRef]);
 
+  const solid = scrolled || isProductPage || isMenuOpen;
+
   return (
+    <>
+    {/* Spacer keeps the layout in place now that the header is fixed */}
+    <div className="h-[74px]" aria-hidden="true" />
+    <header
+      className={`fixed top-0 inset-x-0 z-50 lg:px-[100px] md:px-[50px] px-[25px] transition-colors duration-300 ${solid ? 'bg-black' : 'bg-transparent'}`}
+    >
     <nav className="mx-auto max-w-[1110px] text-white py-6 border-b border-white/20 relative">
       <div className="flex items-center justify-between">
         {/* Hamburger Icon (Tablet only) */}
@@ -70,6 +86,8 @@ function Navbar({ isProductPage }: { isProductPage?: boolean }) {
       </div>
       <CartModal isOpen={isCartModalOpen} onClose={() => setIsCartModalOpen(false)} />
     </nav>
+    </header>
+    </>
   );
 }
 

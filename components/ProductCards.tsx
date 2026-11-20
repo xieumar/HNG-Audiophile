@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import { motion } from 'motion/react';
 import ProductCard from "@/components/Home/ProductCard";
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
@@ -33,7 +34,13 @@ function ProductCards() {
   return (
     <div className='bg-(--white-light) lg:py-[150px] py-[100px] lg:px-[100px] px-[50px] '>
       <div className="mx-auto max-w-[1110px]">
-        <div className=" flex flex-col md:flex-row justify-between gap-[100px] md:gap-4 items-center">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ staggerChildren: 0.2 }}
+          className=" flex flex-col md:flex-row justify-between gap-[100px] md:gap-4 items-center"
+        >
           {categories.map((categoryData) => (
             <ProductCard
               key={categoryData.title}
@@ -42,7 +49,7 @@ function ProductCards() {
               link={categoryData.link}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

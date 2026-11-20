@@ -2,8 +2,16 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
+
+const reveal = {
+  initial: { opacity: 0, y: 60 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.25 },
+  transition: { duration: 0.7, ease: 'easeOut' as const },
+};
 
 function HomeProducts() {
   const products = useQuery(api.products.getAll);
@@ -21,7 +29,7 @@ function HomeProducts() {
       <div className="mx-auto max-w-[1110px]">
         <div className="flex flex-col gap-10">
           {zx9Speaker && (
-            <div className="lg:h-[560px] h-[600px] bg-(--orange-dark) flex flex-col relative overflow-hidden rounded-lg items-center md:gap-y-[30px]">
+            <motion.div {...reveal} className="lg:h-[560px] h-[600px] bg-(--orange-dark) flex flex-col relative overflow-hidden rounded-lg items-center md:gap-y-[30px]">
               <img src="/assets/home/desktop/pattern-circles.svg" alt="Pattern Circles" className="absolute top-0 -left-1/8" />
               <div className="flex-start w-full flex justify-center">
               <img src="/assets/home/desktop/image-speaker-zx9.svg" alt={zx9Speaker.name} className="absolute w-[170px] md:w-[250px] lg:w-[400px] top-10 lg:top-auto lg:bottom-0 left-1/2 -translate-x-1/2 lg:left-[5%] xl:left-1/10 lg:translate-x-0" />
@@ -33,22 +41,22 @@ function HomeProducts() {
                   <p className='p-3 px-6 uppercase bg-black hover:bg-[#4c4c4c] cursor-pointer w-fit text-sm mx-auto lg:mx-0'>See product</p>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {zx7Speaker && (
-            <div className="speaker h-80 bg-no-repeat bg-cover bg-center rounded-lg flex items-center" style={{ backgroundImage: `url(/assets/home/desktop/image-speaker-zx7.jpg)` }}>
+            <motion.div {...reveal} className="speaker h-80 bg-no-repeat bg-cover bg-center rounded-lg flex items-center" style={{ backgroundImage: `url(/assets/home/desktop/image-speaker-zx7.jpg)` }}>
               <div className="text flex flex-col gap-6 items-start px-10 md:px-15 lg:px-30">
                 <p className='text-2xl font-semibold uppercase tracking-[2px]'>{zx7Speaker.name}</p>
                 <Link href={`/speakers/${zx7Speaker.slug}`}>
                   <p className='p-3 px-6 uppercase border border-black hover:bg-black hover:text-white cursor-pointer w-fit text-sm'>See product</p>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {yx1Earphones && (
-            <div className="h-80 flex flex-col md:flex-row lg:gap-8 gap-4">
+            <motion.div {...reveal} className="h-80 flex flex-col md:flex-row lg:gap-8 gap-4">
               <picture className="w-full md:w-1/2 h-[200px] md:h-auto">
                 <source media="(min-width: 1024px)" srcSet="/assets/home/desktop/image-earphones-yx1.jpg" />
                 <source media="(min-width: 768px)" srcSet="/assets/home/desktop/image-earphones-yx1.jpg" />
@@ -60,7 +68,7 @@ function HomeProducts() {
                   <p className='p-3 px-6 uppercase border border-black hover:bg-black hover:text-white cursor-pointer w-fit text-sm'>See product</p>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
