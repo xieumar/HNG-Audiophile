@@ -17,7 +17,22 @@ function HomeProducts() {
   const products = useQuery(api.products.getAll);
 
   if (!products) {
-    return <div>Loading featured products...</div>;
+    // Block heights mirror the loaded layout: ZX9 (600px, 560px on lg), ZX7 (320px), YX1 (320px)
+    const bone = 'bg-black/10 animate-pulse rounded-lg';
+    return (
+      <div className='bg-(--white-light) lg:pb-[150px] pb-[100px] lg:px-[100px] md:px-[50px] px-[25px]' aria-busy="true">
+        <div className="mx-auto max-w-[1110px]">
+          <div className="flex flex-col gap-10">
+            <div className={`${bone} lg:h-[560px] h-[600px]`} />
+            <div className={`${bone} h-80`} />
+            <div className="h-80 flex flex-col md:flex-row lg:gap-8 gap-4">
+              <div className={`${bone} w-full md:w-1/2 h-[200px] md:h-auto`} />
+              <div className={`${bone} w-full md:w-1/2 min-h-[200px]`} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const zx9Speaker = products.find(product => product.slug === "zx9-speaker");

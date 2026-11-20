@@ -9,7 +9,18 @@ function ProductCards() {
   const products = useQuery(api.products.getAll);
 
   if (!products) {
-    return <div>Loading categories...</div>;
+    // Same wrapper and card size (350x205) as the loaded state, so nothing shifts
+    return (
+      <div className='bg-(--white-light) lg:py-[150px] py-[100px] lg:px-[100px] px-[50px]' aria-busy="true">
+        <div className="mx-auto max-w-[1110px]">
+          <div className="flex flex-col md:flex-row justify-between gap-[100px] md:gap-4 items-center">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="w-[350px] max-w-full h-[205px] rounded-lg bg-black/10 animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const desiredOrder = ["headphones", "speakers", "earphones"];

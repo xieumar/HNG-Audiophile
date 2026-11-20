@@ -6,6 +6,10 @@ import { useQuery } from "convex/react"; // Import useQuery
 import { api } from "../../convex/_generated/api"; // Import api
 import { Skeleton } from 'antd';
 
+// Matches the category preview images: 654x704 (mobile), 1378x704 (tablet), 1080x1120 (desktop)
+const imageBox = 'w-full lg:w-1/2 rounded-lg aspect-[654/704] md:aspect-[1378/704] lg:aspect-[1080/1120]';
+const bone = 'bg-black/10 animate-pulse';
+
 function HeadphonesProducts() {
   const products = useQuery(api.products.getAll); // Fetch all products
 
@@ -14,7 +18,7 @@ function HeadphonesProducts() {
 
   if (!headphones) {
     return (
-      <div className='bg-(--white-light) lg:py-[150px] py-[100px] lg:px-[100px] md:px-[50px] px-[25px] animate-pulse'>
+      <div className='bg-(--white-light) lg:py-[150px] py-[100px] lg:px-[100px] md:px-[50px] px-[25px]' aria-busy="true">
         <div className="mx-auto max-w-[1110px]">
           <div className="mx-auto lg:max-w-[1110px] flex flex-col gap-20 ">
             {[...Array(3)].map((_, index) => (
@@ -22,9 +26,16 @@ function HeadphonesProducts() {
                 key={index}
                 className={`flex flex-col ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} h-auto md:h-fit items-start md:items-center gap-10 lg:gap-30`}
               >
-                <Skeleton.Image active className="rounded-lg w-full h-[300px] lg:w-1/2" />
-                <div className="text flex flex-col gap-6 justify-center md:justify-start w-full lg:w-1/2 text-center lg:text-left px-5">
-                  <Skeleton active paragraph={{ rows: 4 }} />
+                <div className={`${imageBox} ${bone}`} />
+                <div className="text flex flex-col gap-6 justify-center md:justify-start w-full lg:w-1/2 items-center lg:items-start px-5">
+                  <div className={`${bone} h-4 w-40`} />
+                  <div className={`${bone} h-12 w-full max-w-[420px]`} />
+                  <div className="flex flex-col gap-2 w-full">
+                    <div className={`${bone} h-4 w-full`} />
+                    <div className={`${bone} h-4 w-full`} />
+                    <div className={`${bone} h-4 w-2/3`} />
+                  </div>
+                  <div className={`${bone} h-10 w-[160px]`} />
                 </div>
               </div>
             ))}
@@ -49,10 +60,10 @@ function HeadphonesProducts() {
               key={product.slug}
               className={`flex flex-col ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} h-auto md:h-fit items-start md:items-center gap-10 lg:gap-30`}
             >
-              <picture className='rounded-lg'>
+              <picture className={`block overflow-hidden bg-(--white-dark) ${imageBox}`}>
                 <source media="(min-width: 1024px)" srcSet={product.categoryImage.desktop} />
                 <source media="(min-width: 768px)" srcSet={product.categoryImage.tablet} />
-                <img src={product.categoryImage.mobile} alt={product.name} className='rounded-lg' />
+                <img src={product.categoryImage.mobile} alt={product.name} className='rounded-lg w-full h-full object-cover' />
               </picture>
               <div className="text flex flex-col gap-6 justify-center md:justify-start w-full lg:w-1/2 text-center lg:text-left px-5">
                 {product.new && <h4 className='text-sm uppercase tracking-[10px] text-(--orange-dark) text-center lg:text-left'>New product</h4>}
